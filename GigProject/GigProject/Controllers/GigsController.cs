@@ -28,6 +28,7 @@ namespace GigProject.Controllers
             return View(viewModel);
         }
         [Authorize]
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Create(GigFormViewModel viewModel)
         {
