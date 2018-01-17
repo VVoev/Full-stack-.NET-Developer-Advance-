@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GigsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -213,6 +214,14 @@
     <Compile Include="Migrations\201801171316274_OverrideConventionsForGigAndGenres.Designer.cs">
       <DependentUpon>201801171316274_OverrideConventionsForGigAndGenres.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801171325476_PopulateGenresTable.cs" />
+    <Compile Include="Migrations\201801171325476_PopulateGenresTable.Designer.cs">
+      <DependentUpon>201801171325476_PopulateGenresTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801171459040_AddForeignKeysPropertiesToGig.cs" />
+    <Compile Include="Migrations\201801171459040_AddForeignKeysPropertiesToGig.Designer.cs">
+      <DependentUpon>201801171459040_AddForeignKeysPropertiesToGig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -222,6 +231,9 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\FutureData.cs" />
+    <Compile Include="ViewModels\GigFormViewModel.cs" />
+    <Compile Include="ViewModels\ValidTime.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -281,6 +293,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Gigs\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -302,6 +315,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801171316274_OverrideConventionsForGigAndGenres.resx">
       <DependentUpon>201801171316274_OverrideConventionsForGigAndGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801171325476_PopulateGenresTable.resx">
+      <DependentUpon>201801171325476_PopulateGenresTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801171459040_AddForeignKeysPropertiesToGig.resx">
+      <DependentUpon>201801171459040_AddForeignKeysPropertiesToGig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
