@@ -61,3 +61,11 @@ h6,
     padding:7px 20px;
     border-radius:9px;
 }
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    color: #ffffff;
+    background-color: #b35d79;
+}
+
+.navbar-brand{
+    font-weight:700
+}
