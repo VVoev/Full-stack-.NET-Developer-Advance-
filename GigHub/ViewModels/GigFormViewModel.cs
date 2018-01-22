@@ -11,6 +11,7 @@ namespace GigHub.ViewModels
     public class GigFormViewModel
     {
         public int Id { get; set; }
+
         [Required]
         public string Venue { get; set; }
 
@@ -25,23 +26,24 @@ namespace GigHub.ViewModels
         [Required]
         public byte Genre { get; set; }
 
+        public IEnumerable<Genre> Genres { get; set; }
+        
         public string Heading { get; set; }
-
+        
         public string Action
         {
             get
             {
-                Expression<Func<GigsController, ActionResult>> update = (c => c.Update(this));
+                Expression<Func<GigsController, ActionResult>> update = 
+                    (c => c.Update(this));
 
-                Expression<Func<GigsController, ActionResult>> create = (c => c.Create(this));
+                Expression<Func<GigsController, ActionResult>> create = 
+                    (c => c.Create(this));
 
                 var action = (Id != 0) ? update : create;
-                var actionName = (action.Body as MethodCallExpression).Method.Name;
-                return actionName;
+                return (action.Body as MethodCallExpression).Method.Name;
             }
         }
-
-        public IEnumerable<Genre> Genres { get; set; }
 
         public DateTime GetDateTime()
         {
