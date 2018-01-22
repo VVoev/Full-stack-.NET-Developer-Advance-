@@ -57,10 +57,31 @@ namespace GigHub.Controllers
         {
             var viewModel = new GigFormViewModel
             {
-                Genres = _context.Genres.ToList()
+                Genres = _context.Genres.ToList(),
+                Heading = "Add a Gig"
             };
 
-            return View(viewModel);
+            return View("GigForm",viewModel);
+        }
+
+
+
+        public ActionResult Edit(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            var gig = this._context.Gigs.Single(x => x.Id == id && userId == x.ArtistId);
+
+            var viewModel = new GigFormViewModel
+            {
+                Genres = _context.Genres.ToList(),
+                Date = gig.DateTime.ToString("d MMM yyyy"),
+                Time = gig.DateTime.ToString("HH:mm"),
+                Genre = gig.GenreId,
+                Venue = gig.Venue,
+                Heading = "Edit a Gig"
+            };
+
+            return View("GigForm",viewModel);
         }
 
         [Authorize]
@@ -71,7 +92,27 @@ namespace GigHub.Controllers
             if (!ModelState.IsValid)
             {
                 viewModel.Genres = _context.Genres.ToList();
-                return View("Create", viewModel);
+                return View("GigForm", viewModel);
+            }
+            var userId = this.User.Identity.GetUserId();
+            var gig = this._context.Gigs.Single(x => x.Id == viewModel.Id && x.ArtistId == userId);
+            gig.Venue = viewModel.Venue;
+            gig.DateTime = viewModel.GetDateTime();
+            gig.GenreId = viewModel.Genre;
+
+            _context.SaveChanges();
+            return RedirectToAction("Mine", "Gigs");
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(GigFormViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                viewModel.Genres = _context.Genres.ToList();
+                return View("GigForm", viewModel);
             }
 
             var gig = new Gig
